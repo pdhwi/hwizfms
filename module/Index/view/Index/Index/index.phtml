@@ -1,0 +1,138 @@
+<div class="banner">
+       <div class="folio_block">
+        
+        <div class="main_view">
+            <div class="window">    
+                <div class="image_reel" style="width: 2880px; left: 0px; ">
+                    <?php foreach($banner as $val ):?>
+                    <a href="<?php echo $val->banner_url ;?>"><img src="<?php echo $this->basePath( $val->banner_image) ?>" alt="<?php echo $val->banner_title ;?>"></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="paging" style="display: block; ">
+                <?php foreach($banner as $key=>$val ):?>
+                    <a href="#" rel="<?php echo $key+1 ;?>" <?php  $key+1==1? 'class="active"':'' ?> ><?php echo $key+1 ;?></a>
+                <?php endforeach; ?>
+
+            </div>
+        </div>
+    </div>  
+</div>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+    //Set Default State of each portfolio piece
+    $(".paging").show();
+    $(".paging a:first").addClass("active");
+        
+    //Get size of images, how many there are, then determin the size of the image reel.
+    var imageWidth = $(".window").width();
+    var imageSum = $(".image_reel img").size();
+    var imageReelWidth = imageWidth * imageSum;
+    
+    //Adjust the image reel to its new size
+    $(".image_reel").css({'width' : imageReelWidth});
+    
+    //Paging + Slider Function
+    rotate = function(){    
+        var triggerID = $active.attr("rel") - 1; //Get number of times to slide
+        var image_reelPosition = triggerID * imageWidth; //Determines the distance the image reel needs to slide
+
+        $(".paging a").removeClass('active'); //Remove all active class
+        $active.addClass('active'); //Add active class (the $active is declared in the rotateSwitch function)
+        
+        //Slider Animation
+        $(".image_reel").animate({ 
+            left: -image_reelPosition
+        }, 500 );
+        
+    }; 
+    
+    //Rotation + Timing Event
+    rotateSwitch = function(){      
+        play = setInterval(function(){ //Set timer - this will repeat itself every 3 seconds
+            $active = $('.paging a.active').next();
+            if ( $active.length === 0) { //If paging reaches the end...
+                $active = $('.paging a:first'); //go back to first
+            }
+            rotate(); //Trigger the paging and slider function
+        }, 7000); //Timer speed http://www.lanrenzz.com
+    };
+    
+    rotateSwitch(); //Run function on launch
+    
+    //On Hover
+    $(".image_reel a").hover(function() {
+        clearInterval(play); //Stop the rotation
+    }, function() {
+        rotateSwitch(); //Resume rotation
+    }); 
+    
+    //On Click
+    $(".paging a").click(function() {   
+        $active = $(this); //Activate the clicked paging
+        //Reset Timer
+        clearInterval(play); //Stop the rotation
+        rotate(); //Trigger rotation immediately
+        rotateSwitch(); // Resume rotation
+        return false; //Prevent browser jump to link anchor
+    }); 
+    
+});
+</script>
+<div class="content">
+    <div class="w475_l">
+        <div class="title">
+            <h2 class="cBlue fB"><?php echo $doc->doc_title; ?><b class="cGrey fn"><?php echo $doc->doc_enTitle; ?></b></h2>
+        </div>
+        <div class="intro">
+               <?php echo $doc->doc_content?>
+               <a href="<?php echo $this->url('AboutUs')?>" class="cBlue"> 查看更多...</a>
+                <div class="hackbox"></div>
+        </div>
+        <div class="blank10"></div>
+        <div class="title">
+            <h2 class="cBlue fB">产品展示<b class="cGrey fn">Products</b></h2><span class="more"><a href="#" class="cBlue"> 更多...</a></span>
+        </div>
+        <ul class="list_l">
+            <li>
+                <span class="listimg">
+                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod1.gif') ?>" alt="产品1" /></a>
+                </span>
+                <span class="listtxt">网格布</span>
+            </li>
+            <li>
+                <span class="listimg">
+                   <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod2.gif') ?>" alt="产品2" /></a>
+                </span>
+                <span class="listtxt">橡塑板</span>
+            </li>
+            <li>
+                <span class="listimg">
+                   <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod3.jpg') ?>" alt="产品3" /></a>
+                </span>
+                <span class="listtxt">橡塑管</span>
+            </li>
+        </ul>
+    </div>
+    <div class="w370_r">
+        <?php  foreach($artcat as $val):?>
+        <div class="title">
+            <h2 class="cBlue fB"><?php echo $val->artcat_title ;?><b class="cGrey fn"><?php echo $val->artcat_entitle ;?></b></h2>
+        </div>
+        <ul class="list_r">
+            <?php foreach($arr[$val->artcat_entitle] as $va):?>
+            <li><a href="<?php echo $this->url('Knowledge',array('action'=>'info','id'=>$va->article_id,'type'=>$val->artCat_id))?>"><?php  echo $va->article_title ;?></a></a><span class="time1"><?php echo date("Y-m-d H:i:s",$va->article_addTime);?></span></li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="blank29"></div>
+        <?php endforeach; ?>
+    </div>
+    <div class="hackbox"></div>
+    
+    <div class="title">
+            <h2 class="cBlue fB">友情链接<b class="cGrey fn">Links</b></h2>
+    </div>
+    <p class="links"><a href="#">卓越网上购物</a> | <a href="#">京东网上商城</a> | <a href="#">携程旅行网</a> | <a href="#">太平洋电脑网</a> | <a href="#">中国移动</a> | <a href="#">中国政府网</a> | <a href="#">凤 凰 网</a></p>
+</div>
