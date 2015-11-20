@@ -21,14 +21,16 @@ return array(
              'Knowledge' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/Knowledge[/:action][/:id[/:type]]',
+                     'route'    => '/Knowledge[/:action].html[/:pag][/:type]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[0-9]+',
+                         'pag'     => '[0-9]+',
+                         'type'     => '[0-9]+',
                      ),
                      'defaults' => array(
                          'controller' => 'Knowledge\Controller\Knowledge',
                          'action'     => 'index',
+
                      ),
                  ),
              ),

@@ -12,13 +12,33 @@ namespace AboutUs\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
+
 class AboutUsController extends AbstractActionController
 {
+    
+	//公司简介
+    protected $getDocTable;
+    public function getDocTable()
+    {
+         if (!$this->getDocTable) {
+             $sm = $this->getServiceLocator();
+             $this->getDocTable = $sm->get('Hwi\Model\DocTable');
+         }
+         return $this->getDocTable;
+    }
+
     public function indexAction()
     {
 
-
-        return new ViewModel();
+    	//公司简介
+        $where=array(
+                'doc_position'=>'about_us',
+                'doc_show'=>'0',
+            );
+        $doc=iterator_to_array($this->getDocTable()->fetchAll($where));
+        return array(
+                'doc'=>$doc[0],
+            );
     }
 
 }

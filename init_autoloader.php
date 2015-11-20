@@ -24,4 +24,3 @@ Zend\Loader\AutoloaderFactory::factory(array(
         'autoregister_zf' => true
     )
 ));
-

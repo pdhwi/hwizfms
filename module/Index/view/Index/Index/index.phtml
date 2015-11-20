@@ -1,3 +1,6 @@
+<?php 
+    $sub=new \Zend\Stdlib\StringWrapper\MbString();//截取字符串
+?>
 <div class="banner">
        <div class="folio_block">
         
@@ -5,7 +8,7 @@
             <div class="window">    
                 <div class="image_reel" style="width: 2880px; left: 0px; ">
                     <?php foreach($banner as $val ):?>
-                    <a href="<?php echo $val->banner_url ;?>"><img src="<?php echo $this->basePath( $val->banner_image) ?>" alt="<?php echo $val->banner_title ;?>"></a>
+                    <a href="<?php echo $this->url(null,['action'=>'info'],['query'=>['id'=>$val->banner_id]]) ;?>"><img src="<?php echo $this->basePath( '/img/config/'.$val->banner_image) ?>" alt="<?php echo $val->banner_title ;?>"></a>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -18,6 +21,7 @@
         </div>
     </div>  
 </div>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -87,43 +91,37 @@ $(document).ready(function() {
             <h2 class="cBlue fB"><?php echo $doc->doc_title; ?><b class="cGrey fn"><?php echo $doc->doc_enTitle; ?></b></h2>
         </div>
         <div class="intro">
-               <?php echo $doc->doc_content?>
+               <?php echo $sub->substr( $doc->doc_content,0,220) ?>
                <a href="<?php echo $this->url('AboutUs')?>" class="cBlue"> 查看更多...</a>
                 <div class="hackbox"></div>
         </div>
         <div class="blank10"></div>
         <div class="title">
-            <h2 class="cBlue fB">产品展示<b class="cGrey fn">Products</b></h2><span class="more"><a href="#" class="cBlue"> 更多...</a></span>
+            <h2 class="cBlue fB">产品展示<b class="cGrey fn">Products</b></h2><span class="more"><a href="<?php echo $this->url('Product',array('action'=>'Index')); ?>" class="cBlue"> 更多...</a></span>
         </div>
         <ul class="list_l">
+            <?php foreach($Pro as $key=>$val):?>
             <li>
                 <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod1.gif') ?>" alt="产品1" /></a>
+                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/product/PC/'.$val->product_PCimg) ?>" title="<?php echo $val->product_feature; ?>" /></a>
                 </span>
-                <span class="listtxt">网格布</span>
+                <span class="listtxt"><?php echo $val->product_name; ?></span>
             </li>
-            <li>
-                <span class="listimg">
-                   <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod2.gif') ?>" alt="产品2" /></a>
-                </span>
-                <span class="listtxt">橡塑板</span>
-            </li>
-            <li>
-                <span class="listimg">
-                   <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod3.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">橡塑管</span>
-            </li>
+        <?php endforeach;?>
         </ul>
     </div>
     <div class="w370_r">
         <?php  foreach($artcat as $val):?>
         <div class="title">
-            <h2 class="cBlue fB"><?php echo $val->artcat_title ;?><b class="cGrey fn"><?php echo $val->artcat_entitle ;?></b></h2>
+            <h2 class="cBlue fB"><?php echo $val->artcat_title ;?><b class="cGrey fn"><?php echo $val->artcat_entitle ;?></b></h2><span class="more"><a href="<?php echo $this->url('Knowledge',array('action'=>'Index')); ?>" class="cBlue"> 更多...</a></span>
         </div>
         <ul class="list_r">
             <?php foreach($arr[$val->artcat_entitle] as $va):?>
-            <li><a href="<?php echo $this->url('Knowledge',array('action'=>'info','id'=>$va->article_id,'type'=>$val->artCat_id))?>"><?php  echo $va->article_title ;?></a></a><span class="time1"><?php echo date("Y-m-d H:i:s",$va->article_addTime);?></span></li>
+            <li><a href="<?php echo $this->url('Knowledge',['action'=>'info'],['query'=>['id'=>$va->article_id]])?>">
+                <?php    echo $sub->substr($va->article_title,0,15);echo $sub->substr($va->article_title,15,16)?'...':'';?>
+                </a>
+                <span class="time1"><?php echo date("Y-m-d H:i:s",$va->article_addTime);?></span>
+            </li>
             <?php endforeach; ?>
         </ul>
         <div class="blank29"></div>
@@ -134,5 +132,10 @@ $(document).ready(function() {
     <div class="title">
             <h2 class="cBlue fB">友情链接<b class="cGrey fn">Links</b></h2>
     </div>
-    <p class="links"><a href="#">卓越网上购物</a> | <a href="#">京东网上商城</a> | <a href="#">携程旅行网</a> | <a href="#">太平洋电脑网</a> | <a href="#">中国移动</a> | <a href="#">中国政府网</a> | <a href="#">凤 凰 网</a></p>
+    <p class="links">
+    <?php foreach($link as $key=>$va):?>
+        <a target="_bank" href="<?php echo $va->link_url ;?>"><?php echo $va->link_title ;?></a> 
+        <?php if(count($link)-1!=$key){echo '|';}?>
+    <?php endforeach;?>
+    </p>
 </div>

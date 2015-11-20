@@ -21,7 +21,7 @@ return array(
              'ContactUs' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/ContactUs[/:action][/:id]',
+                     'route'    => '/ContactUs[/:action].html[/:id]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          'id'     => '[0-9]+',

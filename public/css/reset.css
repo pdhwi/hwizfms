@@ -1,0 +1,23 @@
+/* reset */
+@charset "utf-8";
+body,div,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,
+form,fieldset,input,textarea,p,th,td,a,img{ padding: 0; margin: 0; font-family:宋体; font-size:15px;line-height: 100%;}
+fieldset,img { border: none; }
+th{ font-weight: normal; font-style: normal;text-align: left;}
+ol,ul,li { list-style: none;}
+h1,h2,h3,h4 { font-weight: normal; font-size: 100%;}
+a{ text-decoration:none; color:#000;}
+/*define*/
+.left{ float: left;}
+.right{float: right;}
+.clear{
+	clear: both;
+	*height:0px;
+	*line-height: 0px;
+	*font-size: 0px;
+}
+.red{ color: #ff0000;}
+.white{ color: #ffffff;}
+.block{ color: #000000;}
+.blue{ color: #0000ff;}
+.nobor{ border:none;}

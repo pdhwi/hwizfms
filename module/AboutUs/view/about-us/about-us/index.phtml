@@ -1,17 +1,18 @@
 <div class="banner">
-	<a href="#"><img src="<?php echo $this->basePath('img/banner.jpg') ?>" align="banner" /></a>
+	<a href="#"><img src="<?php echo $this->basePath('img/config/banner.jpg') ?>" align="banner" /></a>
 </div>
 <div class="content">
 	<div class="lefter">
     	<div class="title">
-        	<h2 class="cBlue fB">公司简介<b class="cGrey fn">About us</b></h2>
+        	<h2 class="cBlue fB"><?php echo  $doc->doc_title;?><b class="cGrey fn"><?php echo  $doc->doc_enTitle;?></b></h2>
         </div>
         <div class="intro">
-        	<p>我公司前身是金能保温材料经营部，因扩大经营规模，于2009年3月变更为金陵贸易有限公司。1994年开始从事保温、保冷、吸音、耐火、化工、建材等产品的经营贸易，对控制产品质量方面具备非常好的经验，是中国东南地区最大的保温材料经营贸易公司之一。公司经营宗旨是：诚信经营，质量第一。欢迎您的洽谈！</p>
-        	<p>我公司前身是金能保温材料经营部，因扩大经营规模，于2009年3月变更为金陵贸易有限公司。1994年开始从事保温、保冷、吸音、耐火、化工、建材等产品的经营贸易，对控制产品质量方面具备非常好的经验，是中国东南地区最大的保温材料经营贸易公司之一。公司经营宗旨是：诚信经营，质量第一。欢迎您的洽谈！</p>
-        	<p>我公司前身是金能保温材料经营部，因扩大经营规模，于2009年3月变更为金陵贸易有限公司。1994年开始从事保温、保冷、吸音、耐火、化工、建材等产品的经营贸易，对控制产品质量方面具备非常好的经验，是中国东南地区最大的保温材料经营贸易公司之一。公司经营宗旨是：诚信经营，质量第一。欢迎您的洽谈！</p>
+        	<?php echo  $doc->doc_content;?>
         </div>
     </div>
+    <?php 
+        
+    ?>
 	<div class="righter">
     	<div class="rightBox">
         	<a href="#" class="btn_s">我要留言</a>

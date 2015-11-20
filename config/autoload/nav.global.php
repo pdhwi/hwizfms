@@ -4,14 +4,18 @@ return array(
          'default' => array(
              array(
                  'label' => '首页',
-                 'route' => 'home',
+                 'route' => 'Index',
+                 'controller' => 'Index',
+                 'action'     => 'Index',
+                 'resource'   => 'Index\Controller',
+                 'privilege'  => 'Index',
              ),
              array(
                  'label' => '公司简介',
                  'route' => 'AboutUs', 
                  'controller' => 'AboutUs',
                  'action'     => 'Index',
-                 'resource'   => 'AboutUs\Controller\Index',
+                 'resource'   => 'AboutUs\Controller',
                  'privilege'  => 'Index',
              ),
              array(
@@ -19,15 +23,15 @@ return array(
                  'route' => 'Product', 
                  'controller' => 'Product',
                  'action'     => 'Index',
-                 'resource'   => 'Product\Controller\Index',
+                 'resource'   => 'Product\Controller',
                  'privilege'  => 'Index',
              ),
              array(
-                 'label' => '行业资讯',
+                 'label' => '文章信息',
                  'route' => 'Knowledge', 
                  'controller' => 'Knowledge',
                  'action'     => 'Index',
-                 'resource'   => 'Knowledge\Controller\Index',
+                 'resource'   => 'Knowledge\Controller',
                  'privilege'  => 'Index',
              ),
              array(
@@ -35,7 +39,7 @@ return array(
                  'route' => 'Message', 
                  'controller' => 'Message',
                  'action'     => 'Index',
-                 'resource'   => 'Message\Controller\Index',
+                 'resource'   => 'Message\Controller',
                  'privilege'  => 'Index',
              ),
              array(
@@ -43,7 +47,7 @@ return array(
                  'route' => 'ContactUs', 
                  'controller' => 'ContactUs',
                  'action'     => 'Index',
-                 'resource'   => 'ContactUs\Controller\Index',
+                 'resource'   => 'ContactUs\Controller',
                  'privilege'  => 'Index',
              ),
              

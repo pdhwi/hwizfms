@@ -21,17 +21,18 @@ return array(
              'Product' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/Product[/:action][/:id]',
+                     'route'    => '/Product[/:action].html[/:pag][/:type]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                         'id'     => '[0-9]+',
+                         'pag'     => '[0-9]+',
                      ),
                      'defaults' => array(
                          'controller' => 'Product\Controller\Product',
                          'action'     => 'index',
+                         'pag'        =>'1'
                      ),
                  ),
-             ),
+            ),
          ),
      ),
 

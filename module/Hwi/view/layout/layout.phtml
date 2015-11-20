@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <?php echo $this->headTitle('金陵贸易有限公司 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?php echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                            
+                            ->prependStylesheet($this->basePath('css/jl.css'))
+                            ->prependStylesheet($this->basePath('css/style.css'))
+                            //->prependStylesheet($this->basePath('css/jl_style.css'))
+                            
+    ?>
+<!-- Scripts -->
+ <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery.js'))
+            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath('js/jquery.js'))
+        ; ?>          
+</head>
+
+<body>
+
+<div class="header">
+    <h1 class="logo" title="">
+        <a href="<?php echo $this->serverUrl('/') ;?>"><img src="<?php echo $this->basePath('img/config/logo.gif') ?>" alt="" /></a>
+    </h1>
+    <p class="top_r">
+        <a href="#" class="btn_i">设为主页</a><a href="#" class="btn_f">收藏本站</a>
+    </p>
+</div>
+
+<div class="nav">
+    <div class="nav_left"></div>
+    <ul id = "nav">
+       <?php echo $this->navigation('navigation')->menu(); ?>
+        <!--   <li class="sel" ><a href="<?php echo $this->serverUrl('/') ;?>">首页</a></li>
+   
+        <li><a href="<?php echo $this->serverUrl('/AboutUs') ?>">公司简介</a></li>
+        <li><a href="<?php echo $this->serverUrl('/Product') ?>">产品展示</a></li>
+        <li><a href="<?php echo $this->serverUrl('/Knowledge') ?>">行业资讯</a></li>
+        <li><a href="<?php echo $this->serverUrl('/Message') ?>">客户留言</a></li>
+        <li><a href="<?php echo $this->serverUrl('/ContactUs') ?>" class="nobg">联系我们</a></li> -->
+     </ul>
+     <div class="time" id="showTime">&nbsp;</div>
+    <div class="nav_right"></div>
+</div>
+
+
+            <?php echo $this->content; ?>
+
+<div class="footer">
+    <p>地址：广东省广州市广州大道北  联系人：乐可   移动电话：13619829982 固定电话：020-1234567 传 真：020-1234567</p>
+    <p>Copyright @ 2009 金陵贸易有限公司 版权所有</p>
+    <p>粤ICP备08108790号</p>
+</div>
+    <?php echo $this->headScript()
+        ->prependFile($this->basePath('js/js.js'))
+     ; ?>   
+
+</body>
+</html>

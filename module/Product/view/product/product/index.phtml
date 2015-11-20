@@ -1,87 +1,30 @@
 <div class="banner">
-    <a href="#"><img src="<?php echo $this->basePath('img/banner.jpg') ?>" align="banner" /></a>
+    <a href="#"><img src="<?php echo $this->basePath('img/config/banner.jpg') ?>" align="banner" /></a>
 </div>
 <div class="content">
     <div class="lefter">
         <div class="title">
             <h2 class="cBlue fB">产品展示<b class="cGrey fn">Products</b></h2>
         </div>
-        <ul class="list_l">
+        <ul class="list_l minl">
+        <?php foreach($paginator as $val):?>
             <li>
                 <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod1.gif') ?>" alt="产品1" /></a>
+                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="<?php echo $this->url(null,['action'=>'info'],['query'=>['id'=>$val->product_id]])?>"><img src="<?php echo $this->basePath('img/product/PC/'.$val->product_PCimg) ?>" title="<?php echo $val->product_feature?>" /></a>
                 </span>
-                <span class="listtxt">网格布</span>
+                <span class="listtxt"><?php echo $val->product_name?></span>
             </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod2.gif') ?>" alt="产品2" /></a>
-                </span>
-                <span class="listtxt">橡塑板</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod3.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">橡塑管</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod4.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">珍珠岩</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod1.gif') ?>" alt="产品1" /></a>
-                </span>
-                <span class="listtxt">网格布</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod2.gif') ?>" alt="产品2" /></a>
-                </span>
-                <span class="listtxt">橡塑板</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod3.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">橡塑管</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod4.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">珍珠岩</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod1.gif') ?>" alt="产品1" /></a>
-                </span>
-                <span class="listtxt">网格布</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod2.gif') ?>" alt="产品2" /></a>
-                </span>
-                <span class="listtxt">橡塑板</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod3.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">橡塑管</span>
-            </li>
-            <li>
-                <span class="listimg">
-                    <img src="<?php echo $this->basePath('img/tran.gif') ?>" class="blank" /><a href="#"><img src="<?php echo $this->basePath('img/prod4.jpg') ?>" alt="产品3" /></a>
-                </span>
-                <span class="listtxt">珍珠岩</span>
-            </li>
+        <?php endforeach;?>
         </ul>
         <div class="blank10"></div>
-        <div class="pages"><a href="#" class="pre">上一页</a><a class="current">1</a><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=2" class="next">下一页</a></div>
+        <?php echo  $this->PaginationControl($paginator,'all','layout/PageLayout'); ?>
+        <?php 
+             if(count($this->items)>1)
+          {
+          echo $this->paginationControl($this->items,'Sliding','partials/pagination-control.phtml');                
+          }
+        ?>
+
         <div class="blank6"></div>
     </div>
     <div class="righter">
@@ -108,6 +51,5 @@
         </div>
     </div>
     <div class="hackbox"></div>
-    
     
 </div>

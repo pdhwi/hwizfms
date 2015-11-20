@@ -21,7 +21,7 @@ return array(
              'AboutUs' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/AboutUs[/:action][/:id]',
+                     'route'    => '/AboutUs[/:action].html[/:id]',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          'id'     => '[0-9]+',

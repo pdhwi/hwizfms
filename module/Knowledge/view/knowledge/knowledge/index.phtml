@@ -1,29 +1,22 @@
+
 <div class="banner">
-    <a href="#"><img src="<?php echo $this->basePath('img/banner.jpg') ?>" align="banner" /></a>
+    <a href="#"><img src="<?php echo $this->basePath('img/config/banner.jpg') ?>" align="banner" /></a>
 </div>
 <div class="content">
     <div class="lefter">
         <div class="title">
-            <h2 class="cBlue fB">行业知识<b class="cGrey fn">Knowledge</b></h2>
+        <?php foreach($artcat as $val):?>
+            <h2  class="cBlue fB <?php echo $type==$val->artCat_id?'moren':''?>"> <a  class="clear_text_decoration " href="<?php echo $this->url(null,['action'=>'index','pag'=>'1','type'=>$val->artCat_id])?>">
+            <?php echo $val->artcat_title?><b class="cGrey fn">Knowledge</b></a></h2>
+        <?php endforeach;?>  
         </div>
-        <ul class="list_r" style="padding-right:40px">
-            <li><a href="#">快讯:蒋孝严宣布共同建议 吁优化两岸合作条件  </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">力拓间谍们情报交易链条曝光 包女歌手收买内奸 </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">中石油乌鲁木齐石化分公司一成品油罐发生爆炸  </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">英国出现首例甲型H1N1流感死亡病例 </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">广东省招办就高考录取数据错误向考生致歉   </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">广西遭遇今年首个热带风暴 “性急酋长”来倒水 </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">四川达州持续遭受特大暴雨袭击</a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">快讯:蒋孝严宣布共同建议 吁优化两岸合作条件  </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">力拓间谍们情报交易链条曝光 包女歌手收买内奸 </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">中石油乌鲁木齐石化分公司一成品油罐发生爆炸  </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">英国出现首例甲型H1N1流感死亡病例 </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">广东省招办就高考录取数据错误向考生致歉   </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">广西遭遇今年首个热带风暴 “性急酋长”来倒水 </a><span class="time2">2009-07-04</span></li>
-            <li><a href="#">四川达州持续遭受特大暴雨袭击</a><span class="time2">2009-07-04</span></li>
+        <ul class="list_r" style="padding-right:40px;min-height: 290px;">
+            <?php foreach($paginator as $val):?>
+                <li><a href="<?php echo $this->url(null,['action'=>'info'],['query'=>['id'=>$val->article_id]])?>"> <?php    echo $sub->substr($val->article_title,0,25);echo $sub->substr($val->article_title,25,26)?'...':'';?></a><span class="time2"><?php echo date("Y-m-d H:i:s",$val->article_addTime);?></span></li>
+            <?php endforeach;?>
         </ul>
         <div class="blank10"></div>
-        <div class="pages"><a href="#" class="pre">上一页</a><a class="current">1</a><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=2" class="next">下一页</a></div>
+        <?php echo  $paginator?$this->PaginationControl($paginator,'all','layout/PageLayout'):''; ?>
     </div>
     <div class="righter">
         <div class="rightBox">

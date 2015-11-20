@@ -14,12 +14,46 @@ use Zend\View\Model\ViewModel;
 
 class ProductController extends AbstractActionController
 {
+	//公司简介
+    protected $getProductTable;
+    public function getProductTable()
+    {
+         if (!$this->getProductTable) {
+             $sm = $this->getServiceLocator();
+             $this->getProductTable = $sm->get('Hwi\Model\ProductTable');
+         }
+         return $this->getProductTable;
+    }
+
     public function indexAction()
     {
-        return new ViewModel();
+        $id   =$this->params()->fromRoute('id',null);
+        $type =$this->params()->fromRoute('type',null);
+        $pag  =$this->params()->fromRoute('pag',1);
+
+    	//公司简介
+        $where=array(
+                'product_show'=>'0',
+            );
+        //$pro=iterator_to_array($this->getProductTable()->fetchAll($where,'product_orderBy desc'));
+
+        $paginator = $this->getProductTable()->fetchAll($where,'product_orderBy desc','',true);
+        $paginator->setCurrentPageNumber((int)$this->params()->fromRoute('pag',1));
+        $paginator->setItemCountPerPage(8);
+
+        return new ViewModel(array('paginator'=>$paginator));
     }
-    public function addAction()
-    {
-        return new ViewModel();
+
+    public function infoAction(){
+        $result = $this->getRequest();
+        $id=$result->getQuery('id',null);
+       
+        if(!preg_match("/^[0-9]*$/",$id)){
+            exit('Don\'t get destroyed');
+        }
+        $pro = $this->getProductTable()->getartPro($id);
+        return [
+            'pro'=>$pro,
+        ];
     }
 }

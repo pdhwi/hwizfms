@@ -1,3 +1,9 @@
+.clear{
+	clear: both;
+	*height:0px;
+	*line-height: 0px;
+	*font-size: 0px;
+}
 /* Link */
 a:link {color:#666; text-decoration:none;}
 a:visited {color:#666;text-decoration:none;}
@@ -45,7 +51,7 @@ input,textarea{ vertical-align:top;margin:3px 0 10px 0;_margin-top:-3px}
 .nav{width:916px;margin:0 auto;height:31px;background:url(../img/nav_bg.gif) repeat-x 0 -31px; position:relative; overflow:hidden}
 .nav_left{ position:absolute;top:0;left:0;height:31px;width:8px; background:url(../img/nav_bg.gif) no-repeat 0 0; z-index:2}
 .nav_right{ position:absolute;top:0;right:0;height:31px;width:8px; background:url(../img/nav_bg.gif) no-repeat 0 -62px; z-index:3}
-.nav ul{padding:0 4px 0 10px}
+.nav ul{padding:0 4px 0 28px}
 .nav ul li{float:left; height:16px;font-size:12px;}
 .nav ul li a{padding:0 20px 0 20px;_padding-top:2px; display:block; float:left;height:29px; line-height:29px;background:url(../img/nav_line.gif) no-repeat right 6px}
 .nav ul li a:link,.nav ul li a:visited,.nav ul li a:active{color:#fff;text-decoration:none}
@@ -72,16 +78,20 @@ input,textarea{ vertical-align:top;margin:3px 0 10px 0;_margin-top:-3px}
 
 
 /*list*/
-.list_r{clear:both}
+.list_r{clear:both;margin-top:5px;}
 .list_r li{height:29px;line-height:29px;_height:27px; line-height:27px; background:url(../img/list_rbg.gif) repeat-x left bottom; position:relative}
 .list_r li a{display:block;padding:0 0 0 18px; background:url(../img/liststyle.gif) no-repeat 2px 10px; _background-position:2px 8px}
 .list_r li .time1{ position:absolute;font-size:11px;color:#999; top:0; right:12px;color:#666}
 .list_r li .time2{ position:absolute;font-size:11px;color:#999; top:0; right:30px;color:#666}
-.list_l {padding-top:6px}
+.list_l {padding-top:6px;float: left;}
 .list_l li{float:left;width:146px;padding:6px 10px 0 0;_padding-right:5px;text-align:center;}
 .list_l li .listimg{width:148px;height:106px; display:block;border:1px solid #ccc}
 .list_l li .listtxt{height:22px;line-height:22px; color:#666}
 .blank {display:inline-block;height:100%;vertical-align:middle; width:0; overflow:hidden}
+
+.minl{
+	min-height: 272px;
+}
 
 .links{padding:8px; color:#666}
 .links a:link {color:#999; text-decoration:none;}
@@ -92,15 +102,34 @@ input,textarea{ vertical-align:top;margin:3px 0 10px 0;_margin-top:-3px}
 .intro p{line-height:1.8em; text-indent:2em;padding:10px 0}
 .intro img{margin:0 6px 0 0; border:1px solid #ccc}
 
+/*产品详细*/
+.probox{float:left;width:550px;margin:10px;padding-left:50px;}
+.proboxImg{float:left;margin: 0px 10px;}
+.proinfo{float:left;margin-left:30px;}
+.proinfo p{font-size: 16px;line-height: 30px;margin-left:50px;}
+.proinfo  .profeature{margin-left:10px;color:blue;font-size: 20px;padding:0 auto: ;}
+.prodesc {width:560px;}
 
-
+/*文章详细*/
+.alertbox{float:left;width:550px;margin:10px;}
+.alertbox h1{text-align: center}
+.alertbox a{float:right;text-decoration: none;font-size:15px;}
+.alertcenter{width:600px;word-break:break-all;min-height: 237px;}
+.alertbottom{margin-top:5px;float:right;}
 /*pages*/
 .pages {padding:30px 0 0 0;margin:0px auto; text-align:center}
 .pages a {border:1px solid #e6e7e1; width:auto; padding:3px 7px 3px 7px; color:#0099cc; text-align:center; margin-right:3px; text-decoration:none; display: inline; vertical-align:middle}
 .pages a:hover,.pages a:active{text-decoration:none; border:1px solid #0099cc;color:#0099cc}
 .pages a.pre {text-decoration:none; border:1px solid #0099cc;padding-left:16px;background:url(../img/pagesbg.gif) no-repeat 6px 8px}
 .pages a.next{text-decoration:none; border:1px solid #0099cc;padding-right:16px;background:url(../img/pagesbg.gif) no-repeat 48px -9px}
-
+.pages a.active {
+	font-weight: bold; 
+	background: blue; 
+	color:#fff;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
 
 /* pic palyer */
 .slideBox{ width:914px; height:193px; overflow:hidden; position:relative;    } 
@@ -131,11 +160,14 @@ input,textarea{ vertical-align:top;margin:3px 0 10px 0;_margin-top:-3px}
 	overflow: hidden; /*--Hides anything outside of the set width/height--*/
 	position: relative;
 }
+*+html .window {width:915px}/*ie7*/    
 .image_reel {
 	position: absolute;
 	top: 0; left: 0;
 }
+*+html .image_reel img {float: left;width:915px;height:400px;}/*ie7*/    
 .image_reel img {float: left;width:960px;height:400px;}
+
 
 /*--Paging Styles--*/
 .paging {
@@ -162,3 +194,6 @@ input,textarea{ vertical-align:top;margin:3px 0 10px 0;_margin-top:-3px}
 	-webkit-border-radius: 3px;
 }
 .paging a:hover {font-weight: bold;}
+
+.title .clear_text_decoration{text-decoration: none}
+.moren a{color:blue;}

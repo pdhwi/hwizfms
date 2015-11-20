@@ -21,7 +21,7 @@ class IndexController extends AbstractActionController
     {
          if (!$this->BannerTable) {
              $sm = $this->getServiceLocator();
-             $this->BannerTable = $sm->get('Index\Model\BannerTable');
+             $this->BannerTable = $sm->get('Hwi\Model\BannerTable');
          }
          return $this->BannerTable;
     }
@@ -31,7 +31,7 @@ class IndexController extends AbstractActionController
     {
          if (!$this->getDocTable) {
              $sm = $this->getServiceLocator();
-             $this->getDocTable = $sm->get('Doc\Model\DocTable');
+             $this->getDocTable = $sm->get('Hwi\Model\DocTable');
          }
          return $this->getDocTable;
     }
@@ -41,7 +41,7 @@ class IndexController extends AbstractActionController
     {
          if (!$this->getartcatTable) {
              $sm = $this->getServiceLocator();
-             $this->getartcatTable = $sm->get('artcat\Model\artcatTable');
+             $this->getartcatTable = $sm->get('Hwi\Model\artcatTable');
          }
          return $this->getartcatTable;
     }
@@ -51,9 +51,39 @@ class IndexController extends AbstractActionController
     {
          if (!$this->getarticleTable) {
              $sm = $this->getServiceLocator();
-             $this->getarticleTable = $sm->get('article\Model\articleTable');
+             $this->getarticleTable = $sm->get('Hwi\Model\articleTable');
          }
          return $this->getarticleTable;
+    }
+    //产品
+    protected $getProductTable;
+    public function getProductTable()
+    {
+         if (!$this->getProductTable) {
+             $sm = $this->getServiceLocator();
+             $this->getProductTable = $sm->get('Hwi\Model\ProductTable');
+         }
+         return $this->getProductTable;
+    }
+    //友情链接
+    protected $getLinkTable;
+    public function getLinkTable()
+    {
+         if (!$this->getLinkTable) {
+             $sm = $this->getServiceLocator();
+             $this->getLinkTable = $sm->get('Hwi\Model\LinkTable');
+         }
+         return $this->getLinkTable;
+    }
+    //导航栏
+    protected $getiIdexTable;
+    public function getiIdexTable()
+    {
+         if (!$this->getiIdexTable) {
+             $sm = $this->getServiceLocator();
+             $this->getiIdexTable = $sm->get('Hwi\Model\navTable');
+         }
+         return $this->getiIdexTable;
     }
 
     public function indexAction()
@@ -86,18 +116,40 @@ class IndexController extends AbstractActionController
                 $arr[$val->artcat_entitle][]=$va;
             }
         }
+        //产品
+        $where=array(
+                'product_show'=>'0',
+            );
+        $Pro=iterator_to_array($this->getProductTable()->fetchAll($where,'product_orderBy desc',3));
+        //友情链接
+        $where=array(
+                'link_show'=>'0',
+            );
+        $link=iterator_to_array($this->getLinkTable()->fetchAll($where,'link_orderBy desc',6));
         //赋值
+
+
+
     	return array(
              'banner'=>$banner,
+             'link'=>$link,
+             'Pro'=>$Pro,
              'doc'=>$doc['0'],
              'artcat'=>$artcat,
              'arr'=>$arr,
          );
     }
 
-    public function addAction()
-    {
-        return new ViewModel();
+    public function headerAction()
+    {       
+        
+        $result = $this->getiIdexTable()->fetchAll(['nav_show'=>0],array('nav_orderBy desc '));
+
+        return new ViewModel(array('header'=>$result));
     }
+
+
+
+
 
 }

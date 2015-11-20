@@ -14,7 +14,9 @@ return array(
         'Knowledge',
         'Message',
         'Product',
+        'Hwi',
         'Index',
+        
     ),
 
     // These are various options for the listeners attached to the ModuleManager

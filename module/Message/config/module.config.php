@@ -21,7 +21,7 @@ return array(
              'Message' => array(
                  'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/Message[/:action][/:id]',
+                     'route'    => '/Message[/:action].html',
                      'constraints' => array(
                          'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                          'id'     => '[0-9]+',
