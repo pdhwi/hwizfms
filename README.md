@@ -1,6 +1,7 @@
 ZendSkeletonApplication
 =======================
-
+本人刚学习ZF2 希望有人可以交交我ZF2是如何做一些公共部分的、  导航栏、脚部、页面中间的一些公共信息信息！！谢谢。Q 331883059
+---------------------
 Introduction
 ------------
 This is a simple, skeleton application using the ZF2 MVC layer and module
